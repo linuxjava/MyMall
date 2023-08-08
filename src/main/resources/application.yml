@@ -9,9 +9,6 @@ spring:
     url: jdbc:mysql://43.154.93.74:3306/mall?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false
     username: root
     password: Xiao123456
-  mvc:
-    pathmatch:
-      matching-strategy: ant_path_matcher
 
 knife4j:
   enable: true
@@ -37,3 +34,6 @@ knife4j:
         api-rule: package
         api-rule-resources:
           - com.xiao.mall.controller.ums # 定义controller扫描路径
+mybatis-flex:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #配置日志输出
