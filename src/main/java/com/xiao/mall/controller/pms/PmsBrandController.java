@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.Serializable;
 import java.util.List;
 
+import com.xiao.mall.common.api.CommonResult;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiImplicitParams;
@@ -66,8 +67,8 @@ public class PmsBrandController {
 
             @ApiImplicitParam(name = "brandStory", value = "品牌故事")
     })
-    public boolean save(@RequestBody PmsBrandEntity pmsBrand) {
-        return pmsBrandService.save(pmsBrand);
+    public CommonResult<Boolean> save(@RequestBody PmsBrandEntity pmsBrand) {
+        return CommonResult.success(pmsBrandService.save(pmsBrand));
     }
 
 
@@ -82,8 +83,8 @@ public class PmsBrandController {
     @ApiImplicitParams(value = {
             @ApiImplicitParam(name = "id", value = "", required = true)
     })
-    public boolean remove(@PathVariable Serializable id) {
-        return pmsBrandService.removeById(id);
+    public CommonResult<Boolean> remove(@PathVariable Serializable id) {
+        return CommonResult.success(pmsBrandService.removeById(id));
     }
 
 
@@ -118,8 +119,8 @@ public class PmsBrandController {
 
             @ApiImplicitParam(name = "brandStory", value = "品牌故事")
     })
-    public boolean update(@RequestBody PmsBrandEntity pmsBrand) {
-        return pmsBrandService.updateById(pmsBrand);
+    public CommonResult<Boolean> update(@RequestBody PmsBrandEntity pmsBrand) {
+        return CommonResult.success(pmsBrandService.updateById(pmsBrand));
     }
 
 
@@ -130,8 +131,8 @@ public class PmsBrandController {
      */
     @GetMapping("/list")
     @ApiOperation(value = "查询所有品牌表", notes = "查询所有品牌表")
-    public List<PmsBrandEntity> list() {
-        return pmsBrandService.list();
+    public CommonResult<List<PmsBrandEntity>> list() {
+        return CommonResult.success(pmsBrandService.list());
     }
 
 
@@ -146,8 +147,8 @@ public class PmsBrandController {
     @ApiImplicitParams(value = {
             @ApiImplicitParam(name = "id", value = "", required = true)
     })
-    public PmsBrandEntity getInfo(@PathVariable Serializable id) {
-        return pmsBrandService.getById(id);
+    public CommonResult<PmsBrandEntity> getInfo(@PathVariable Serializable id) {
+        return CommonResult.success(pmsBrandService.getById(id));
     }
 
 
@@ -163,7 +164,7 @@ public class PmsBrandController {
             @ApiImplicitParam(name = "pageNumber", value = "页码", required = true),
             @ApiImplicitParam(name = "pageSize", value = "每页大小", required = true)
     })
-    public Page<PmsBrandEntity> page(Page<PmsBrandEntity> page) {
-        return pmsBrandService.page(page);
+    public CommonResult<Page<PmsBrandEntity>> page(Page<PmsBrandEntity> page) {
+        return CommonResult.success(pmsBrandService.page(page));
     }
 }

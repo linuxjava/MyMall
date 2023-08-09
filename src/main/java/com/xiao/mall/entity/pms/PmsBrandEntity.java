@@ -13,7 +13,6 @@ import com.mybatisflex.annotation.Table;
 
 import java.lang.Long;
 import java.lang.String;
-import java.sql.Blob;
 import java.lang.Integer;
 
 /**
