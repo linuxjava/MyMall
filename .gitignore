@@ -2,6 +2,7 @@ HELP.md
 target
 .idea
 !.mvn/wrapper/maven-wrapper.jar
+src/main/resources/rebel.xml
 
 ### STS ###
 .apt_generated

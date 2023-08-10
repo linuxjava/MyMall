@@ -1,12 +1,23 @@
 package com.xiao.mall.common.api;
 
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.val;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * 通用返回对象
  * Created by macro on 2019/4/19.
  */
+@Data
 public class CommonResult<T> {
+    @ApiModelProperty(value = "返回码")
     private long code;
+    @ApiModelProperty(value = "返回消息")
     private String message;
+    @ApiModelProperty(value = "返回数据")
     private T data;
 
     protected CommonResult() {
@@ -25,6 +36,20 @@ public class CommonResult<T> {
      */
     public static <T> CommonResult<T> success(T data) {
         return new CommonResult<T>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
+    }
+
+    public static CommonResult<Map<String, Object>> ok(String key, Object value) {
+        Map<String, Object> data = new HashMap<>();
+        data.put(key, value);
+        return new CommonResult<>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
+    }
+
+    public CommonResult data(String key, Object value) {
+        if(this.data instanceof Map) {
+            ((Map<String, Object>)this.data).put(key, value);
+        }
+
+        return this;
     }
 
     /**
@@ -87,6 +112,10 @@ public class CommonResult<T> {
      */
     public static <T> CommonResult<T> forbidden(T data) {
         return new CommonResult<T>(ResultCode.FORBIDDEN.getCode(), ResultCode.FORBIDDEN.getMessage(), data);
+    }
+
+    public static <T> CommonResult<T> usernamePwdError() {
+        return new CommonResult<T>(ResultCode.USER_NAME_OR_PASSWORD_FAIL.getCode(), ResultCode.USER_NAME_OR_PASSWORD_FAIL.getMessage(), null);
     }
 
     public long getCode() {

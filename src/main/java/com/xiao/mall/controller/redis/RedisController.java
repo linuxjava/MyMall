@@ -59,27 +59,27 @@ public class RedisController {
         return CommonResult.success(cacheBrand);
     }
 
-//    @ApiOperation("测试Set结构的缓存")
-//    @RequestMapping(value = "/setTest", method = RequestMethod.GET)
-//    @ResponseBody
-//    public CommonResult<Set<Object>> setTest() {
-//        List<PmsBrandEntity> brandList = brandService.list(1, 5);
-//        String key = "redis:set:all";
-//        redisService.sAdd(key, (Object[]) ArrayUtil.toArray(brandList, PmsBrandEntity.class));
-//        redisService.sRemove(key, brandList.get(0));
-//        Set<Object> cachedBrandList = redisService.sMembers(key);
-//        return CommonResult.success(cachedBrandList);
-//    }
-//
-//    @ApiOperation("测试List结构的缓存")
-//    @RequestMapping(value = "/listTest", method = RequestMethod.GET)
-//    @ResponseBody
-//    public CommonResult<List<Object>> listTest() {
-//        List<PmsBrandEntity> brandList = brandService.list(1, 5);
-//        String key = "redis:list:all";
-//        redisService.lPushAll(key, (Object[]) ArrayUtil.toArray(brandList, PmsBrandEntity.class));
-//        redisService.lRemove(key, 1, brandList.get(0));
-//        List<Object> cachedBrandList = redisService.lRange(key, 0, 3);
-//        return CommonResult.success(cachedBrandList);
-//    }
+    @ApiOperation("测试Set结构的缓存")
+    @RequestMapping(value = "/setTest", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult<Set<Object>> setTest() {
+        List<PmsBrandEntity> brandList = brandService.list();
+        String key = "redis:set:all";
+        redisService.sAdd(key, (Object[]) ArrayUtil.toArray(brandList, PmsBrandEntity.class));
+        redisService.sRemove(key, brandList.get(0));
+        Set<Object> cachedBrandList = redisService.sMembers(key);
+        return CommonResult.success(cachedBrandList);
+    }
+
+    @ApiOperation("测试List结构的缓存")
+    @RequestMapping(value = "/listTest", method = RequestMethod.GET)
+    @ResponseBody
+    public CommonResult<List<Object>> listTest() {
+        List<PmsBrandEntity> brandList = brandService.list();
+        String key = "redis:list:all";
+        redisService.lPushAll(key, (Object[]) ArrayUtil.toArray(brandList, PmsBrandEntity.class));
+        redisService.lRemove(key, 1, brandList.get(0));
+        List<Object> cachedBrandList = redisService.lRange(key, 0, 3);
+        return CommonResult.success(cachedBrandList);
+    }
 }
