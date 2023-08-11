@@ -44,6 +44,12 @@ public class CommonResult<T> {
         return new CommonResult<>(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMessage(), data);
     }
 
+    public static CommonResult<Map<String, Object>> failed(String key, Object value) {
+        Map<String, Object> data = new HashMap<>();
+        data.put(key, value);
+        return new CommonResult<>(ResultCode.FAILED.getCode(), ResultCode.FAILED.getMessage(), data);
+    }
+
     public CommonResult data(String key, Object value) {
         if(this.data instanceof Map) {
             ((Map<String, Object>)this.data).put(key, value);
@@ -68,6 +74,14 @@ public class CommonResult<T> {
      */
     public static <T> CommonResult<T> failed(IErrorCode errorCode) {
         return new CommonResult<T>(errorCode.getCode(), errorCode.getMessage(), null);
+    }
+
+    /**
+     * 失败返回结果
+     * @param message 提示信息
+     */
+    public static <T> CommonResult<T> failed(long code, String message) {
+        return new CommonResult<T>(code, message, null);
     }
 
     /**

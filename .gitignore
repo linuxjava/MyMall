@@ -3,6 +3,7 @@ target
 .idea
 !.mvn/wrapper/maven-wrapper.jar
 src/main/resources/rebel.xml
+logs
 
 ### STS ###
 .apt_generated
