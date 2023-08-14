@@ -134,6 +134,12 @@
             <version>${jwt.version}</version>
         </dependency>
         <!-- Spring Security依赖end -->
+        <!--Spring AMQP依赖start-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <!--Spring AMQP依赖end-->
 
         <!--for test-->
         <dependency>

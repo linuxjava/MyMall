@@ -29,6 +29,15 @@ spring:
   #        - 192.168.6.139:6394
   #        - 192.168.6.139:6395
   #        - 192.168.6.139:6396
+#好像无需下面配置也能正常运行
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    virtual-host: /mall
+#    username: guest
+#    password: guest
+##    publisher-confirms: true #消息发送到交换器确认
+##    publisher-returns: true #消息发送到队列确认
 
 knife4j:
   enable: true
@@ -62,3 +71,8 @@ knife4j:
 mybatis-flex:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #配置日志输出
+  mapper-locations:  #配置xml路径
+    - classpath:mapper/*.xml
+    - classpath*:com/**/mapper/*.xml
+    - classpath*:com/**/mappers/*.xml
+

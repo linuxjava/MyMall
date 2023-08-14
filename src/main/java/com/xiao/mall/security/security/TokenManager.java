@@ -1,5 +1,6 @@
 package com.xiao.mall.security.security;
 
+import com.xiao.mall.security.SecurityConstant;
 import io.jsonwebtoken.CompressionCodecs;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -18,8 +19,8 @@ import java.util.Date;
 @Component
 public class TokenManager {
 
-    private long tokenExpiration = 24*60*60*1000;
-    private String tokenSignKey = "123456";
+    private long tokenExpiration = SecurityConstant.TOKEN_EXPIRATION;
+    private String tokenSignKey = SecurityConstant.TOKEN_SIGN_KEY;
 
     public String createToken(String username) {
         String token = Jwts.builder().setSubject(username)
