@@ -29,6 +29,10 @@ spring:
   #        - 192.168.6.139:6394
   #        - 192.168.6.139:6395
   #        - 192.168.6.139:6396
+  servlet:
+    multipart:
+      enabled: true #开启文件上传
+      max-file-size: 10MB #限制文件上传大小为10M
 #好像无需下面配置也能正常运行
 #  rabbitmq:
 #    host: localhost
@@ -75,4 +79,10 @@ mybatis-flex:
     - classpath:mapper/*.xml
     - classpath*:com/**/mapper/*.xml
     - classpath*:com/**/mappers/*.xml
+# MinIO对象存储相关配置
+minio:
+  endpoint: http://127.0.0.1:9000 #MinIO服务所在地址
+  bucketName: mall #存储桶名称
+  accessKey: PzYZagqZr2qRCiVMnbGo #访问的key
+  secretKey: r746MBItBb270fA5XGprBWxmr4DXac8BCt5YhsKl #访问的秘钥
 
